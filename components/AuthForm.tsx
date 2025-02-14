@@ -51,7 +51,9 @@ const AuthForm = <T extends FieldValues>({
   return (
     <div className="flex flex-col gap-4 ">
       <h1 className={"text-2xl font-semibold text-white"}>
-        {isSignIn ? "Welcome Back to BookItzz" : "Create You new Account"}
+        {isSignIn
+          ? "Welcome Back to BookItzz"
+          : "Create You new Account For Books "}
       </h1>
       <p className={"text-light-100"}>
         {isSignIn
@@ -75,7 +77,7 @@ const AuthForm = <T extends FieldValues>({
                   </FormLabel>
                   <FormControl>
                     {field.name === "universityCard" ? (
-                      <ImageUpload />
+                      <ImageUpload onFileChange={field.onChange} />
                     ) : (
                       <Input
                         required
