@@ -1,4 +1,4 @@
-"user server";
+"use server";
 
 import { signIn } from "@/auth";
 import { db } from "@/database/drizzle";
@@ -45,7 +45,7 @@ export const signUp = async (params: AuthCredentials) => {
   const hashedPassword = await hash(password, 10);
 
   try {
-    db.insert(users).values({
+    await db.insert(users).values({
       fullName,
       email,
       universityId,
