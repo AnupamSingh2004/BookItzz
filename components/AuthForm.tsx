@@ -3,20 +3,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   DefaultValues,
+  FieldValues,
   Path,
   SubmitHandler,
   useForm,
   UseFormReturn,
 } from "react-hook-form";
-
-import { FieldValues } from "react-hook-form";
-import { z, ZodType } from "zod";
+import { ZodType } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,7 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
-import ImageUpload from "@/components/ImageUpload";
+import FileUpload from "@/components/FileUpload";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
@@ -43,7 +41,9 @@ const AuthForm = <T extends FieldValues>({
   onSubmit,
 }: Props<T>) => {
   const router = useRouter();
+
   const isSignIn = type === "SIGN_IN";
+
   const form: UseFormReturn<T> = useForm({
     resolver: zodResolver(schema),
     defaultValues: defaultValues as DefaultValues<T>,
@@ -56,36 +56,34 @@ const AuthForm = <T extends FieldValues>({
       toast({
         title: "Success",
         description: isSignIn
-          ? "You have successfully signed in"
-          : "You have successfully signed up",
+          ? "You have successfully signed in."
+          : "You have successfully signed up.",
       });
 
       router.push("/");
     } else {
       toast({
         title: `Error ${isSignIn ? "signing in" : "signing up"}`,
-        description: result.error ?? "An error occured",
+        description: result.error ?? "An error occurred.",
         variant: "destructive",
       });
     }
   };
 
   return (
-    <div className="flex flex-col gap-4 ">
-      <h1 className={"text-2xl font-semibold text-white"}>
-        {isSignIn
-          ? "Welcome Back to BookItzz"
-          : "Create You new Account For Books "}
+    <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-semibold text-white">
+        {isSignIn ? "Welcome back to BookWise" : "Create your library account"}
       </h1>
-      <p className={"text-light-100"}>
+      <p className="text-light-100">
         {isSignIn
-          ? "Access vast collection of resources, and stay updated"
-          : "Please fill out all the fields "}
+          ? "Access the vast collection of resources, and stay updated"
+          : "Please complete all fields and upload a valid university ID to gain access to the library"}
       </p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="space-y-6 w-full"
+          className="w-full space-y-6"
         >
           {Object.keys(defaultValues).map((field) => (
             <FormField
@@ -94,12 +92,12 @@ const AuthForm = <T extends FieldValues>({
               name={field as Path<T>}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={"capitalize"}>
+                  <FormLabel className="capitalize">
                     {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
                   </FormLabel>
                   <FormControl>
                     {field.name === "universityCard" ? (
-                      <ImageUpload
+                      <FileUpload
                         type="image"
                         accept="image/*"
                         placeholder="Upload your ID"
@@ -114,29 +112,30 @@ const AuthForm = <T extends FieldValues>({
                           FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
                         }
                         {...field}
-                        className={"form-input"}
+                        className="form-input"
                       />
                     )}
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
             />
           ))}
 
-          <Button type="submit" className={"form-btn"}>
+          <Button type="submit" className="form-btn">
             {isSignIn ? "Sign In" : "Sign Up"}
           </Button>
         </form>
       </Form>
-      <p className={"text-center text-base font-medium"}>
-        {isSignIn ? "New to BookItzz? " : "Already have an Account? "}
+
+      <p className="text-center text-base font-medium">
+        {isSignIn ? "New to BookWise? " : "Already have an account? "}
+
         <Link
           href={isSignIn ? "/sign-up" : "/sign-in"}
-          className={"font-semibold text-primary"}
+          className="font-bold text-primary"
         >
-          {isSignIn ? "Create an Account" : "Sign In"}
+          {isSignIn ? "Create an account" : "Sign in"}
         </Link>
       </p>
     </div>
