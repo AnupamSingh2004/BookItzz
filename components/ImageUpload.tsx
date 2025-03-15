@@ -46,7 +46,7 @@ interface Props {
   value?: string;
 }
 
-const FileUpload = ({
+const ImageUpload = ({
   type,
   accept,
   placeholder,
@@ -191,4 +191,4 @@ const FileUpload = ({
   );
 };
 
-export default FileUpload;
+export default ImageUpload;
