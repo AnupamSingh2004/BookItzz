@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input";
 
 import { useRouter } from "next/navigation";
 import { bookSchema } from "@/lib/validations";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Props extends Partial<Book> {
   type?: "create" | "update";
@@ -63,6 +64,169 @@ const BookForm = ({ type, ...book }: Props) => {
           )}
         />
       </form>
+      <FormField
+        control={form.control}
+        name={"author"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Author
+            </FormLabel>
+            <FormControl>
+              <Input
+                required
+                placeholder="Author Name"
+                {...field}
+                className="book-form_input"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"genre"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Genre
+            </FormLabel>
+            <FormControl>
+              <Input
+                required
+                placeholder="Book Genre"
+                {...field}
+                className="book-form_input"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"rating"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Rating
+            </FormLabel>
+            <FormControl>
+              <Input
+                type="number"
+                min={1}
+                max={5}
+                placeholder="Book Rating"
+                {...field}
+                className="book-form_input"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"totalCopies"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Total Copies
+            </FormLabel>
+            <FormControl>
+              <Input
+                type="number"
+                min={0}
+                max={10000}
+                placeholder="Total Copies"
+                {...field}
+                className="book-form_input"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"coverUrl"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Book Image
+            </FormLabel>
+            <FormControl>/* File upload function */</FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"coverColor"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Primary Color
+            </FormLabel>
+            <FormControl>/* Color Picker*/</FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"description"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Description
+            </FormLabel>
+            <FormControl>
+              <Textarea
+                placeholder="Book Description"
+                {...field}
+                rows={10}
+                className="book-form_input"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"videoUrl"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Book Trailer
+            </FormLabel>
+            <FormControl>/* File upload function */</FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name={"summary"}
+        render={({ field }) => (
+          <FormItem className="flex flex-col gap-1 mt-3 ">
+            <FormLabel className="text-base font-normal text-dark-500">
+              Summary
+            </FormLabel>
+            <FormControl>
+              <Textarea
+                placeholder="Book Summary"
+                {...field}
+                rows={5}
+                className="book-form_input"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </Form>
   );
 };
