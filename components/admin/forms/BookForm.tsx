@@ -36,7 +36,18 @@ const AuthForm = ({ type, ...book }: Props) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof bookSchema>>({
     resolver: zodResolver(bookSchema),
-    defaultValues: {},
+    defaultValues: {
+      title: "",
+      description: "",
+      author: "",
+      genre: "",
+      rating: 1,
+      totalCopies: 1,
+      coverUrl: "",
+      coverColor: "",
+      videoUrl: "",
+      summary: "",
+    },
   });
 
   const handleSubmit: SubmitHandler<T> = async (data) => {
