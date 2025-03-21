@@ -11,6 +11,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Session } from "next-auth";
 const Header = ({ session }: { session: Session }) => {
   return (
+
+
     <header className={"my-10 flex justify-between gap-5 "}>
       <Link
         href="/"
