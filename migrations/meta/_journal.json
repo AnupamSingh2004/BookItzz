@@ -15,6 +15,13 @@
       "when": 1742475266020,
       "tag": "0001_wild_zzzax",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1742579796348,
+      "tag": "0002_cold_lila_cheney",
+      "breakpoints": true
     }
   ]
 }
