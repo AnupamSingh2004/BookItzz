@@ -219,11 +219,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * [ImageKit](https://imagekit.io/) for image processing
 * [Redis](https://redis.io/) for rate limiting functionality
 
-## 📧 Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_twitter) - your.email@example.com
-
-Project Link: [https://github.com/your-username/bookitzz](https://github.com/your-username/bookitzz)
 
 ---
 
